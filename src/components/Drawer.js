@@ -1,17 +1,21 @@
-function Drawer({onClose, items = []}) {
+function Drawer({onClose,onRemove, items = []}) {
     return (
         <div  className="overlay">
          <div className="drawer">
-              <h2 className="d-flex mb-40 justify-between">Корзина   <img onClick={onClose} className="cu-p" width={20} height={20} src="/img/remove.png" alt="Close"/> </h2>
-              <div className="items">
+              <h2 className="d-flex mb-30 justify-between mb-30">
+                  Корзина   <img onClick={onClose} class="cu-p" width={20} height={20} src="/img/remove.png" alt="Close"/> </h2>
+             {
+                 items.length > 0 ?  (
+                     <div>
+                         <div className="items">
                   {
-                      items.map((obj) =>(<div className="cartitem d-flex align-center justify-between">
+                      items.map((obj) =>(<div className="cartitem d-flex align-center mb-20">
                   <div style={{ backgroundImage:`url(${obj.imageUrl})` }} className="cartitemimg"></div>
                   <div className="mr-20 flex ">
                       <p className="mb-5">{obj.title}</p>
                       <b>{obj.price}</b>
                   </div>
-                  <img className="remove" width={20} height={20} src="/img/remove.png" alt="Remove"/>
+                  <img onClick={() => onRemove(obj.id)} className="remove" width={20} height={20} src="/img/remove.png" alt="Remove"/>
               </div>))
                   }
               </div>
@@ -28,6 +32,17 @@ function Drawer({onClose, items = []}) {
                  </li>
               </ul>
               <button className="Button">Оформить заказ</button></div>
+                     </div>
+                 ) : (
+                     <div className="cartEmpty d-flex align-center justify-center flex-column flex">
+                         <img className="mb-20" width="250px" height="250" src="/img/Korzina.png" alt="Korzina"/>
+                         <button onClick={onClose} className="Button">
+                             Вернуться назад
+                         </button>
+                     </div>
+                 )}
+
+
           </div>
       </div>
     );
