@@ -1,26 +1,19 @@
-function Drawer(props) {
+function Drawer({onClose, items = []}) {
     return (
         <div  className="overlay">
          <div className="drawer">
-              <h2 className="d-flex mb-40 justify-between">Корзина   <img onClick={props.onClose} className="cu-p" width={20} height={20} src="/img/remove.png" alt="Close"/> </h2>
+              <h2 className="d-flex mb-40 justify-between">Корзина   <img onClick={onClose} className="cu-p" width={20} height={20} src="/img/remove.png" alt="Close"/> </h2>
               <div className="items">
-                  <div className="cartitem d-flex align-center justify-between">
-                  <div style={{ backgroundImage:'url(/img/sushi/sushi2.png)' }} className="cartitemimg"></div>
+                  {
+                      items.map((obj) =>(<div className="cartitem d-flex align-center justify-between">
+                  <div style={{ backgroundImage:`url(${obj.imageUrl})` }} className="cartitemimg"></div>
                   <div className="mr-20 flex ">
-                      <p className="mb-5">Лучшие сушеньки</p>
-                      <b>666 руб.</b>
+                      <p className="mb-5">{obj.title}</p>
+                      <b>{obj.price}</b>
                   </div>
                   <img className="remove" width={20} height={20} src="/img/remove.png" alt="Remove"/>
-              </div>
-
-                <div className="cartitem d-flex align-center justify-between mb-20">
-                  <div style={{ backgroundImage:'url(/img/sushi/sushi2.png)' }} className="cartitemimg"></div>
-                  <div>
-                      <p className="mb-5">Лучшие сушеньки</p>
-                      <b>666 руб.</b>
-                  </div>
-                  <img className="remove" width={20} height={20} src="/img/remove.png" alt="Remove"/>
-              </div>
+              </div>))
+                  }
               </div>
               <div className="cartTotalBlock"><ul>
                  <li>
