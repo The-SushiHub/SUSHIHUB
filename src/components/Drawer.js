@@ -1,12 +1,12 @@
-function Drawer() {
+function Drawer(props) {
     return (
-        <div style={{display:'none'}} className="overlay">
+        <div  className="overlay">
          <div className="drawer">
-              <h2 className="d-flex mb-40 justify-between">Корзина   <img className="cu-p" width={20} height={20} src="/img/remove.png" alt="Remove"/> </h2>
+              <h2 className="d-flex mb-40 justify-between">Корзина   <img onClick={props.onClose} className="cu-p" width={20} height={20} src="/img/remove.png" alt="Close"/> </h2>
               <div className="items">
                   <div className="cartitem d-flex align-center justify-between">
                   <div style={{ backgroundImage:'url(/img/sushi/sushi2.png)' }} className="cartitemimg"></div>
-                  <div>
+                  <div className="mr-20 flex ">
                       <p className="mb-5">Лучшие сушеньки</p>
                       <b>666 руб.</b>
                   </div>
