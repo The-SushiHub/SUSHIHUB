@@ -1,14 +1,27 @@
+import React from 'react';
 
 import Cards from '../components/Card';
-
-
 
 function Home({items,
 searchValue,
 setSearchValue,
 onChangeSearchInput,
 onAddToFavorite,
-onAddToCart}) {
+onAddToCart,
+              isLoading}) {
+    const renderItems = () => {
+        const filtredItems = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()));
+
+        return (isLoading ? [...Array(8)] : filtredItems).map((item, index) =>(
+                   <Cards key={index}
+                          onClick={(obj)=> onAddToCart(obj)}
+                          onFavorite={(obj)=>onAddToFavorite(obj)}
+                          loading={isLoading}
+                          {...item}
+                   />
+                   ))
+
+    }
     return(
          <div className="content p-40">
           <div className="d-flex align-center mb-40 justify-between">
@@ -19,15 +32,7 @@ onAddToCart}) {
             </div>
           </div>
            <div className="d-flex flex-wrap">
-               {items
-                   .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-                   .map((items, index) =>(
-                   <Cards key={index}
-                          onClick={(obj)=> onAddToCart(obj)}
-                          onFavorite={(obj)=>onAddToFavorite(obj)}
-                          {...items}
-                   />
-                   ))}
+               {renderItems()}
 
           </div>
       </div>
