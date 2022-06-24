@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import AppContext from '../context';
 
 function Favorites() {
+    //используем из хранилища
   const { favorites, onAddToFavorite } = React.useContext(AppContext);
 
   return (
