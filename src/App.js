@@ -39,7 +39,7 @@ function App() {
     fetchData();
   }, []);
 
-  const onAddToCart = async (obj) => {
+    const onAddToCart = async (obj) => {
     try {
 //      debugger;
       const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
@@ -71,9 +71,11 @@ function App() {
   };
 
   const onRemoveItem = (id) => {
+     console.log(id)
     try {
       axios.delete(`https://62ac1c85bd0e5d29af1ad2e1.mockapi.io/cart/${id}`);
       setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+
     } catch (error) {
       alert('Ошибка при удалении из корзины');
       console.error(error);
@@ -103,7 +105,7 @@ function App() {
   };
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.parentId) === Number(id));
+    return cartItems.some((obj) => Number(obj.id) === Number(id));
   };
 
   return (
